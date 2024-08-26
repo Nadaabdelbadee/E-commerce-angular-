@@ -1,0 +1,27 @@
+
+@if (isLoading) {
+    <div class="flex justify-center items-center py-10">
+        <div class="loader"></div>
+    </div>
+}@else {
+    @if (productDetails) {
+        <section class="container mx-auto my-10">
+            <div class="flex flex-wrap justify-center items-center">
+                <div class="md:w-3/12 p-3">
+                    <img [src]="productDetails.imageCover" class="w-full" alt="">
+                </div>
+                <div class="md:9/12 p-3">
+                    <h3 class="text-lg font-medium">{{productDetails.title}}</h3>
+                    <p class="text-sm text-gray-500 my-3">{{productDetails.description}}</p>
+                    <p class="text-sm text-gray-600">{{productDetails.category.name}}</p>
+                    <div class="flex flex-wrap justify-between my-3">
+                        <span class="text-sm text-gray-600">{{productDetails.price}}EGP</span>
+                        <span class="text-sm text-gray-600">{{productDetails.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></span>
+                    </div>
+                <button class="rounded bg-main text-white w-full p-1">Add to cart</button>
+                </div>
+            </div>
+        </section>
+    }
+}
+

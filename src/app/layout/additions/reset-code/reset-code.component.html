@@ -1,0 +1,28 @@
+@if (resetCodeFlag) {
+    
+    <section class="w-3/4 py-24 mx-auto">
+        <h2 class="text-2xl font-bold py-12">Confirm code : </h2>
+        <form [formGroup]="codeForm" (ngSubmit)="submitCodeForm()">
+            <input formControlName="resetCode" type="text" placeholder="Enter received code" class="w-full mx-auto rounded p-1">
+            @if (codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched ) {
+                <div class="alert-danger">
+                    @if (codeForm.get('resetCode')?.errors?.['required']) {
+                        <p class="p-1">Code is required !</p>
+                    }
+                    @else if (codeForm.get('resetCode')?.errors?.['pattern']) {
+                    <p class="p-1">Code is inValid !</p>
+                    }
+                </div>
+            }
+           @if(isLoading){
+            <button [disabled]="codeForm.invalid" class="bg-main rounded p-1 text-white block my-5 ms-auto"><i class="fa fa-span fa-spinner"></i></button>
+           }@else {
+            <button [disabled]="codeForm.invalid" class="bg-main rounded p-1 text-white block my-5 ms-auto">Send code</button>
+           }
+        </form>
+    </section>
+}
+
+    @if (newPasswordFlag) {
+        <app-new-password></app-new-password>
+    }

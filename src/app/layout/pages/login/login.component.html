@@ -1,0 +1,61 @@
+
+<section class="container w-2/4 my-5 mx-auto">
+    <div>
+        <h1 class="text-2xl">Login Now : </h1>
+    </div>
+    <form class="mx-auto" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+
+        @if(errMsg){
+        <div class="alert alert-danger m-0 p-0">
+            <p class="m-0 p-0">{{errMsg}}</p>
+        </div>
+        }
+        <div class="my-3">
+            <label for="">Email :</label>
+            <input formControlName="email" type="email" class="w-full rounded p-2">
+            @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched)
+            {
+            <div class="alert-danger">
+                @if(loginForm.get('email')?.errors?.['required'])
+                {
+                <p class="p-1 m-0">email is reguired!</p>
+                }
+                @else if(loginForm.get('email')?.errors?.['email'])
+                {
+                <p class="p-1 m-0">Enter valid email</p>
+                }
+            </div>
+            }
+        </div>
+        <div class="my-3">
+            <label for="">Password :</label>
+            <input formControlName="password" type="password" class="w-full rounded p-2">
+            @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched)
+            {
+            <div class="alert-danger">
+                @if(loginForm.get('password')?.errors?.['required'])
+                {
+                <p class="p-1 m-0">password is reguired!</p>
+                }
+                @else if(loginForm.get('password')?.errors?.['pattern'])
+                {
+                <p class="p-1 m-0">Enter valid password(start with capital character and contain min 8 character or
+                    numbers)</p>
+                }
+            </div>
+            }
+        </div>
+        
+        <div>
+            <a routerLink="/forgetpassword" class="text-blue-800 underline">forget password</a>
+            <button [disabled]="loginForm.invalid" class="bg-main text-white ms-auto rounded block px-3 py-1 cursor-pointer">
+                @if (isloading) {
+                    <span><i class="fa fa-spin fa-spinner"></i></span>
+                }
+                @else {
+                <span>LogIn</span>
+                }
+            </button>
+        </div>
+    </form>
+</section>
