@@ -6,6 +6,8 @@ import { HomeSliderComponent } from "../../additions/home-slider/home-slider.com
 import { RouterLink } from '@angular/router';
 import { SearchPipe } from '../../../shared/Pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../../shared/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,7 @@ export class HomeComponent implements OnInit {
   userWord:string = ' ' ;
   isLoading:boolean = false
   productList!:product[]
-  constructor(private _ProductService:ProductService){}
+  constructor(private _ProductService:ProductService , private _CartService:CartService , private toastr: ToastrService){}
   ngOnInit(): void {
     if (typeof localStorage !='undefined') {
       localStorage.setItem('currentBage' , '/home')
@@ -37,6 +39,20 @@ export class HomeComponent implements OnInit {
       error:err=>{
         console.log(err);
        this.isLoading = false 
+      }
+    })
+  }
+
+  addProductToCart(productId:string){
+    this._CartService.addProductToCart(productId).subscribe({
+      next:res=>{
+        console.log(res);
+        this.toastr.success(res.message , '' , {
+          progressBar:true
+        });
+      },
+      error:err=>{
+        console.log(err);
       }
     })
   }

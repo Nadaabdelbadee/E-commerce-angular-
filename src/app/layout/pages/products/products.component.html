@@ -1,1 +1,34 @@
-<p>products works!</p>
+@if (isLoading) {
+    <div class="h-screen flex justify-center items-center ">
+        <div class="loader"></div>
+    </div>
+    }@else
+    {
+    <section class="container mx-auto">
+        <div class="w-3/4 mx-auto my-5">
+            <input [(ngModel)]="userWord" type="text"  placeholder="Search By title ... "  class="rounded p-1 w-full">
+        </div>
+        <div class="flex flex-wrap">
+            @for (product of productList | search : userWord ; track $index)
+            {
+            <div class="product md:w-2/12 cursor-pointer">
+                <div class="p-1">
+                    <div [routerLink]="['/productdetails' , product._id]">
+                        <div class=" p-1">
+                            <img [src]="product.imageCover" class="w-full" alt="">
+                            <p class="text-main">{{product.category.name}}</p>
+                            <h3>{{product.title.split(' ').splice(0,2).join(' ')}}</h3>
+                            <div class="flex justify-between">
+                                <span>{{product.price}}</span>
+                                <span>{{product.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="addProductToCart(product._id)"  class="bg-main rounded w-full p-1 text-white">Add to cart</button>
+    
+                </div>
+            </div>
+            }
+        </div>
+    </section>
+    }

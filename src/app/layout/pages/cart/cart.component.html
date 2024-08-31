@@ -1,1 +1,37 @@
-<p>cart works!</p>
+@if (isLoading) {
+<div class="h-screen flex justify-center items-center ">
+    <div class="loader"></div>
+</div>
+}@else {
+@if (cartProduct) {
+<section class="container">
+    <div class="bg-gray-100 my-4 p-4">
+        <h2 class="text-2xl">Shop Cart:</h2>
+        <span class="text-main">Total cart price:{{cartProduct.totalCartPrice}}</span>
+        @for (p of cartProduct.products; track $index) {
+        <div class="flex items-center mt-2">
+            <div class="w-1/12 my-1">
+                <img [src]="p.product.imageCover" alt="product-image">
+            </div>
+            <div class="w-10/12 mx-4">
+                <h3>{{p.product.title}}</h3>
+                <p class="text-main">price:{{p.price}}</p>
+                <span (click)="deleteSpecificItem(p.product._id)" class="cursor-pointer"><i
+                        class="fa fa-trash text-main"></i> Remove</span>
+            </div>
+            <div class="w-1/12">
+                <button (click)="updateProductQuantity(p.product._id , p.count = p.count+1)"
+                    class="border border-green-400 px-2 rounded">+</button>
+                <span class="mx-1">{{p.count}}</span>
+                <button (click)="updateProductQuantity(p.product._id , p.count = p.count-1)"
+                    class="border border-green-400 px-2.5 rounded">-</button>
+            </div>
+        </div>
+        <hr class="m-4">
+        }
+
+    </div>
+</section>
+}
+
+}

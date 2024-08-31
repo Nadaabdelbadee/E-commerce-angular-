@@ -8,9 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './categories.component.scss'
 })
 export class CategoriesComponent {
-  ngOnInit(): void {
-    if (typeof localStorage !='undefined') {
-      localStorage.setItem('currentBage' , '/categories')
-    }
-  }
+  
 }

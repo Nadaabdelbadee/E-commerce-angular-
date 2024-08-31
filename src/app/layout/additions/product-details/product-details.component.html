@@ -18,7 +18,7 @@
                         <span class="text-sm text-gray-600">{{productDetails.price}}EGP</span>
                         <span class="text-sm text-gray-600">{{productDetails.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></span>
                     </div>
-                <button class="rounded bg-main text-white w-full p-1">Add to cart</button>
+                <button (click)="addProductToCart(productDetails._id)" class="rounded bg-main text-white w-full p-1">Add to cart</button>
                 </div>
             </div>
         </section>
