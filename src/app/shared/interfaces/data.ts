@@ -32,3 +32,9 @@ export interface responceNotSucc{
     message:string,
     token:string,
 }
+
+export interface Address{
+    details:string,
+    phone:string,
+    city:string
+}

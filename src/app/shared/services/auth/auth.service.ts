@@ -18,7 +18,7 @@ export class AuthService {
     if (isPlatformBrowser(id)) {
       if (localStorage.getItem('userToken')) {
         this.userDataToken()
-        _Router.navigate([localStorage.getItem('currentBage')])
+        // _Router.navigate([localStorage.getItem('currentBage')])
       }
     }
   }

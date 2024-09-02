@@ -1,1 +1,21 @@
-<p>categories works!</p>
+@if (isLoading) {
+    <div class="h-screen flex justify-center items-center ">
+        <div class="loader"></div>
+    </div>
+}
+@else {
+    <section class="container">
+        <div class="flex flex-wrap py-5">
+         @for (cat of CategoryData; track $index) {
+            <div class="md: w-3/12 text-center p-4">
+                <div class="product border border-gray-200 rounded-lg cursor-pointer">
+                    <img [src]="cat.image" class="w-full rounded-lg" [alt]="cat.slug">
+                <p class="text-2xl text-main my-5">{{cat.name}}</p>
+                </div>
+            </div>
+         }
+        </div>
+    </section>
+}
+
+

@@ -10,6 +10,8 @@ import { NotfoundComponent } from './layout/additions/notfound/notfound.componen
 import { authGuard } from './shared/guards/auth.guard';
 import { ForgetPasswordComponent } from './layout/additions/forget-password/forget-password.component';
 import { ProductDetailsComponent } from './layout/additions/product-details/product-details.component';
+import { ShippingAddressComponent } from './layout/additions/shipping-address/shipping-address.component';
+import { AllordersComponent } from './layout/additions/allorders/allorders.component';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home' ,pathMatch:'full'},
@@ -18,6 +20,8 @@ export const routes: Routes = [
     {path:'products' , component:ProductsComponent ,canActivate:[authGuard]},
     {path:'categories' , component:CategoriesComponent ,canActivate:[authGuard]},
     {path:'brands' , component:BrandsComponent ,canActivate:[authGuard]},
+    {path:'shippingAddress/:cartID' , component:ShippingAddressComponent ,canActivate:[authGuard]},
+    {path:'allorders' , component:AllordersComponent ,canActivate:[authGuard]},
     {path:'login' , component:LoginComponent},
     {path:'register' , component:RegisterComponent},
     {path:'forgetpassword' , component:ForgetPasswordComponent},

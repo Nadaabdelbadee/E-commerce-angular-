@@ -1,18 +1,18 @@
-import { Product } from './../../../shared/interfaces/cart';
-import { product } from './../../../shared/interfaces/all-products';
 import { Component } from '@angular/core';
 import { CartService } from '../../../shared/services/cart/cart.service';
 import { Data } from '../../../shared/interfaces/cart';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
   cartProduct!:Data
+  numberOfCartItems!:number
   isLoading:boolean = false
   constructor(private _CartService:CartService){}
   ngOnInit(): void {
@@ -28,6 +28,7 @@ export class CartComponent {
     this._CartService.getLoggedUserCart().subscribe({
       next:res=>{
         this.cartProduct = res.data
+        this.numberOfCartItems = res.numOfCartItems
         console.log(res);
         this.isLoading = false
       },
