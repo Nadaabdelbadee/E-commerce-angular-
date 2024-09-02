@@ -28,10 +28,11 @@ export class LoginComponent {
         next: (res) => {
           this.isloading = false;
           console.log(res);
-          this._AuthService.userDataToken()
+          // this._AuthService.userDataToken()
           if (res.token !== null) {
             localStorage.setItem('userToken', res.token)
           } 
+          this._AuthService.decodeUserToken();
           this._Router.navigate(['/home'])
         },
         error: (err) => {

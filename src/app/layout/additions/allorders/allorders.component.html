@@ -1,1 +1,15 @@
-<p>allorders works!</p>
+<section class="container">
+    <div class="w3/4 mx-auto">
+        <h2 class="text-3xl text-main text-center my-4">All previous orders</h2>
+        @for (r of list; track $index) {
+            <div class="md:flex flex-wrap bg-main text-white justify-around py-3 rounded my-4">
+                <span>Total order price : {{r.totalOrderPrice}}</span>
+                <span>Payment method type : {{r.paymentMethodType}}</span>
+                <span>Paid :{{r.isPaid}} </span>
+                <span>Deliverd :{{r.isDelivered}} </span>
+                <span>Customer name:{{r.user.name}} </span>
+                <span class="text-sm">Created at:{{r.createdAt}} </span>
+            </div>
+        }
+    </div>
+</section>

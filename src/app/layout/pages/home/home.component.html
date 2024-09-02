@@ -20,9 +20,16 @@
                 <div [routerLink]="['/productdetails' , product._id]">
                     <div class=" p-1">
                         <img [src]="product.imageCover" class="w-full" alt="">
-                        <p class="text-main">{{product.category.name}}</p>
-                        <h3>{{product.title.split(' ').splice(0,2).join(' ')}}</h3>
-                        <div class="flex justify-between">
+                        <div class="flex justify-between items-center mx-3">
+                            <div>
+                                <p class="text-main">{{product.category.name}}</p>
+                            <h3>{{product.title.split(' ').splice(0,2).join(' ')}}</h3>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-heart text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mx-3">
                             <span>{{product.price}}</span>
                             <span>{{product.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></span>
                         </div>

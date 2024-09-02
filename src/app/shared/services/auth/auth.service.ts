@@ -5,6 +5,7 @@ import { Enviroment } from '../../../base/Enviroment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { jwtDecode } from "jwt-decode";
 
 
 
@@ -12,12 +13,24 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class AuthService {
-  
+  userData:any = null;
+  userDataID:any = null
+
+  decodeUserToken(){
+    const token = JSON.stringify(localStorage.getItem('userToken'));
+    const decoded = jwtDecode(token);
+    this.userData = decoded
+    this.userDataToken()
+    this.userDataID = this.userData.id
+    localStorage.setItem('userDataID' , this.userDataID)
+    console.log(this.userData.id);
+    
+  }
   userToken:BehaviorSubject<any> = new BehaviorSubject(null)
   constructor(private _HttpClient:HttpClient , private _Router:Router ,@Inject(PLATFORM_ID) id:object ) { 
     if (isPlatformBrowser(id)) {
       if (localStorage.getItem('userToken')) {
-        this.userDataToken()
+        this.decodeUserToken()
         // _Router.navigate([localStorage.getItem('currentBage')])
       }
     }
@@ -55,6 +68,11 @@ export class AuthService {
     localStorage.removeItem('userToken');
     this.userToken.next(null);
     this._Router.navigate(['/login']);
-
   }
+  
 }
+// function jwtDecode(token: string) {
+//   throw new Error('Function not implemented.');
+// }
+
+

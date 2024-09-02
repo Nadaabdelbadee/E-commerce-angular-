@@ -3,63 +3,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --main-color:#0aad0a;
+:root {
+  --main-color: #0aad0a;
 }
-.bg-main{
-    background-color: var(--main-color);
+.bg-main {
+  background-color: var(--main-color);
 }
-.text-main{
-    color: var(--main-color);
+.text-main {
+  color: var(--main-color);
 }
-.alert-danger{
-    @apply bg-red-300 text-red-800 rounded p-0 m-0
+.alert-danger {
+  @apply bg-red-300 text-red-800 rounded p-0 m-0;
 }
 
-.cursor-pointer{
-    cursor: pointer;
+.cursor-pointer {
+  cursor: pointer;
 }
-.product{
-    transition: all .5s;
+.product {
+  transition: all 0.5s;
 }
-.product:hover{
-    border-radius: 5px;
-    border: 1px solid var(--main-color);
-    box-shadow: 0 0 10px #11bd1168;
+.product:hover {
+  border-radius: 5px;
+  border: 1px solid var(--main-color);
+  box-shadow: 0 0 10px #11bd1168;
 }
-.product button{
-    transform: translateY(100%);
-    opacity: 0;
-    transition: all .5s;
+.product button {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.5s;
 }
-.product:hover button{
-    opacity: 1;
-    transform: translateY(0);
+.product:hover button {
+  opacity: 1;
+  transform: translateY(0);
 }
-/* HTML: <div class="loader"></div> */
+
 .loader {
-    width: 40px;
-    height: 40px;
-    position: relative;
-    --c:no-repeat linear-gradient(#25b09b 0 0);
-    background:
-      var(--c) center/100% 10px,
-      var(--c) center/10px 100%;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  --c: no-repeat linear-gradient(#25b09b 0 0);
+  background: var(--c) center/100% 10px, var(--c) center/10px 100%;
+}
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--c) 0 0, var(--c) 100% 0, var(--c) 0 100%, var(--c) 100% 100%;
+  background-size: 15.5px 15.5px;
+  animation: l16 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+@keyframes l16 {
+  33% {
+    inset: -10px;
+    transform: rotate(0deg);
   }
-  .loader:before {
-    content:'';
-    position: absolute;
+  66% {
+    inset: -10px;
+    transform: rotate(90deg);
+  }
+  100% {
     inset: 0;
-    background:
-      var(--c) 0    0,
-      var(--c) 100% 0,
-      var(--c) 0    100%,
-      var(--c) 100% 100%;
-    background-size: 15.5px 15.5px;
-    animation: l16 1.5s infinite cubic-bezier(0.3,1,0,1);
+    transform: rotate(90deg);
   }
-  @keyframes l16 {
-     33%  {inset:-10px;transform: rotate(0deg)}
-     66%  {inset:-10px;transform: rotate(90deg)}
-     100% {inset:0    ;transform: rotate(90deg)}
-  }
+}
