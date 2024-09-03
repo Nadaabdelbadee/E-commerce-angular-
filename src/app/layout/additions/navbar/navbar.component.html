@@ -33,6 +33,10 @@
             class="block py-2 px-1 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
         </li>
         <li>
+          <a routerLink="wishlsit" routerLinkActive="bg-main text-white"
+            class="block py-2 px-1 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Wish List</a>
+        </li>
+        <li>
           <a routerLink="cart" routerLinkActive="bg-main text-white"
             class="block py-2 px-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-black  dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cart</a>
         </li>
@@ -59,10 +63,13 @@
         </li>
         }@else {
 
-          <li>
-            <a routerLinkActive="bg-main text-white" 
-              class="block py-2 px-3 cursor-pointer text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i class="fa-solid fa-cart-shopping  text-2xl text-main"></i></a>
-          </li>
+          <li class="relative">
+            <a routerLinkActive="bg-main text-white" routerLink="cart" 
+              class="block py-2 px-3 cursor-pointer text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i class="fa-solid fa-cart-shopping  text-2xl"></i></a>
+          <div class="absolute top-0 right-0 bg-main px-1.5 rounded-md">
+            <span>0</span>
+          </div>
+            </li>
         <li>
           <a routerLinkActive="bg-main text-white" (click)="_AuthService.logOut()"
             class="block py-2 px-3 cursor-pointer text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">SignOut</a>

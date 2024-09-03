@@ -12,6 +12,7 @@ import { ForgetPasswordComponent } from './layout/additions/forget-password/forg
 import { ProductDetailsComponent } from './layout/additions/product-details/product-details.component';
 import { ShippingAddressComponent } from './layout/additions/shipping-address/shipping-address.component';
 import { AllordersComponent } from './layout/additions/allorders/allorders.component';
+import { WishlistComponent } from './layout/pages/wishlist/wishlist.component';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home' ,pathMatch:'full'},
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {path:'brands' , component:BrandsComponent ,canActivate:[authGuard]},
     {path:'shippingAddress/:cartID' , component:ShippingAddressComponent ,canActivate:[authGuard]},
     {path:'allorders' , component:AllordersComponent ,canActivate:[authGuard]},
+    {path:'wishlsit' , component:WishlistComponent ,canActivate:[authGuard]},
     {path:'login' , component:LoginComponent},
     {path:'register' , component:RegisterComponent},
     {path:'forgetpassword' , component:ForgetPasswordComponent},

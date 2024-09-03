@@ -1,0 +1,32 @@
+@if (isLoading) {
+<div class="h-screen flex justify-center items-center ">
+    <div class="loader"></div>
+</div>
+}@else {
+@if (wishlist) {
+<section class="container">
+    <h2 class="text-4xl font-semibold text-center my-5 text-main">Wish List </h2>
+    <div class="bg-gray-100 my-4 p-4">
+        <div class="flex justify-between">
+        </div>
+        @for (product of wishlist; track $index) {
+        <div class="md:flex items-center mt-2">
+            <div class="md:w-1/12 my-1">
+                <img [src]="product.imageCover" alt="product-image">
+            </div>
+            <div class="md:w-10/12 md:mx-4">
+                <h3>{{product.title}}</h3>
+                <p class="text-main">price:{{product.price}}</p>
+                <span (click)="removeProFromWishlist(product._id)" class="cursor-pointer"><i class="fa fa-trash text-main"></i> Remove</span>
+            </div>
+            <div class="md:w-1/12">
+                <button (click)="addProductToCart(product._id)" class="rounded block ms-0 bg-main p-2 text-white">Add to cart</button>
+
+            </div>
+        </div>
+        <hr class="m-4">
+        }
+    </div>
+</section>
+}
+}

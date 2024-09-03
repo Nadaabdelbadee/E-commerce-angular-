@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Enviroment } from '../../../base/Enviroment';
 import { Observable } from 'rxjs';
 import { cartRes } from '../../interfaces/cart';
-import { env } from 'process';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class CartService {
 
   userTokenHeader = {token:localStorage.getItem('userToken') || ''}
   constructor(private _HttpClient:HttpClient) { }
+  
   addProductToCart(productId:string):Observable<any>{
     return this._HttpClient.post(`${Enviroment.baseUrl}/api/v1/cart` ,{productId:productId} , {
       headers: this.userTokenHeader
