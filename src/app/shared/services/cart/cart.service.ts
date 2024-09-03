@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Enviroment } from '../../../base/Enviroment';
 import { Observable } from 'rxjs';
@@ -12,6 +12,13 @@ export class CartService {
 
   userTokenHeader = {token:localStorage.getItem('userToken') || ''}
   constructor(private _HttpClient:HttpClient) { }
+
+  // private getUserTokenHeader():HttpHeaders{
+  //   const token = localStorage.getItem('userToken')|| '';
+  //   return new HttpHeaders({
+  //     teken:token
+  //   })
+  // }
   
   addProductToCart(productId:string):Observable<any>{
     return this._HttpClient.post(`${Enviroment.baseUrl}/api/v1/cart` ,{productId:productId} , {

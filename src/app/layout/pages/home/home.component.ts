@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   userWord: string = ' ';
   isLoading: boolean = false
   productList!: product[]
-  constructor(private _ProductService: ProductService, private _CartService: CartService, private toastr: ToastrService, private _WishlistService: WishlistService , private el:ElementRef) { }
+  constructor(private _ProductService: ProductService, private _CartService: CartService ,private toastr: ToastrService, private _WishlistService: WishlistService , private el:ElementRef) { }
   
   @ViewChild('heartIcon') heartIcon!:ElementRef
   ngOnInit(): void {

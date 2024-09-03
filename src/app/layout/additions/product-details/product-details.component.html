@@ -11,6 +11,9 @@
                     <img [src]="productDetails.imageCover" class="w-full" alt="">
                 </div>
                 <div class="md:9/12 p-3">
+                    <div #heartIcon class="m-2 block ms-auto">
+                        <i  class="fa-solid fa-heart text-2xl" (click)="addProductToWishlist(productDetails._id)"></i>
+                    </div>
                     <h3 class="text-lg font-medium">{{productDetails.title}}</h3>
                     <p class="text-sm text-gray-500 my-3">{{productDetails.description}}</p>
                     <p class="text-sm text-gray-600">{{productDetails.category.name}}</p>

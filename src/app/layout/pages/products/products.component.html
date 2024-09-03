@@ -11,7 +11,10 @@
         <div class="flex flex-wrap">
             @for (product of productList | search : userWord ; track $index)
             {
-            <div class="product md:w-2/12 cursor-pointer">
+            <div class="product md:w-2/12">
+                <div #heartIcon class="m-2 cursor-pointer">
+                    <i  class="fa-solid fa-heart text-2xl" (click)="addProductToWishlist(product._id)"></i>
+                </div>
                 <div class="p-1">
                     <div [routerLink]="['/productdetails' , product._id]">
                         <div class=" p-1">

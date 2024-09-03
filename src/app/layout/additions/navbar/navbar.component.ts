@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { FlowbiteService } from '../../../shared/services/flowbite/flowbite.service';
-import { BrandService } from '../../../shared/services/brand/brand.service';
+import { CartService } from '../../../shared/services/cart/cart.service';
 
 
 
@@ -17,7 +17,7 @@ import { BrandService } from '../../../shared/services/brand/brand.service';
 export class NavbarComponent implements OnInit {
  isLogin:boolean = false;
 
- constructor(public _AuthService:AuthService , private _FlowbiteService:FlowbiteService , private _BrandService:BrandService){}
+ constructor(public _AuthService:AuthService , private _FlowbiteService:FlowbiteService){}
 
  ngOnInit(): void {
   this._FlowbiteService.loadFlowbite(flowbite => {

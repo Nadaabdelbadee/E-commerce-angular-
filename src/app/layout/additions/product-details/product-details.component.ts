@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../shared/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { product } from '../../../shared/interfaces/all-products';
+import { WishlistService } from '../../../shared/services/wishlist/wishlist.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { product } from '../../../shared/interfaces/all-products';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent implements OnInit {
+  wishList!: string[]
   productDetails!:product
   isLoading:boolean= false
   customOptions: OwlOptions = {
@@ -32,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
     },
     nav: true
   }
-  constructor(private _ProductService: ProductService , private _ActivatedRoute:ActivatedRoute ,private _CartService:CartService ,private toastr: ToastrService) { }
+  constructor(private _ProductService: ProductService , private _ActivatedRoute:ActivatedRoute ,private _CartService:CartService ,private toastr: ToastrService , private _WishlistService:WishlistService) { }
   ngOnInit(): void {
     this.getProductByID()
   }
@@ -68,6 +70,21 @@ export class ProductDetailsComponent implements OnInit {
       },
       error:err=>{
         console.log(err);
+      }
+    })
+  }
+  addProductToWishlist(productID: string) {
+    this._WishlistService.addProductToWishlist(productID).subscribe({
+      next: res => {
+        this.wishList = res.data
+        console.log(this.wishList);
+        this.toastr.success(res.message, '', {
+          progressBar: true
+        });
+      },
+      error: err => {
+        console.log(err);
+  
       }
     })
   }

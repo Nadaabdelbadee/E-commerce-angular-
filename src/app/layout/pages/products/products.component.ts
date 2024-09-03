@@ -6,6 +6,7 @@ import { CartService } from '../../../shared/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchPipe } from '../../../shared/Pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { WishlistService } from '../../../shared/services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-products',
@@ -17,8 +18,10 @@ import { FormsModule } from '@angular/forms';
 export class ProductsComponent {
   userWord:string = ' ' ;
   isLoading:boolean = false
+  wishList!: string[]
+  productId!: string
   productList!:product[]
-  constructor(private _ProductService:ProductService , private _CartService:CartService , private toastr: ToastrService){}
+  constructor(private _ProductService:ProductService , private _CartService:CartService , private toastr: ToastrService, private _WishlistService:WishlistService){}
   ngOnInit(): void {
     if (typeof localStorage !='undefined') {
       localStorage.setItem('currentBage' , '/products')
@@ -50,6 +53,22 @@ export class ProductsComponent {
       },
       error:err=>{
         console.log(err);
+      }
+    })
+  }
+  addProductToWishlist(productID: string) {
+    this._WishlistService.addProductToWishlist(productID).subscribe({
+      next: res => {
+        this.productId = productID;
+        this.wishList = res.data
+        console.log(this.wishList);
+        this.toastr.success(res.message, '', {
+          progressBar: true
+        });
+      },
+      error: err => {
+        console.log(err);
+  
       }
     })
   }
