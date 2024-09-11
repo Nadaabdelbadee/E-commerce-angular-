@@ -21,26 +21,18 @@ export class CartService {
   // }
   
   addProductToCart(productId:string):Observable<any>{
-    return this._HttpClient.post(`${Enviroment.baseUrl}/api/v1/cart` ,{productId:productId} , {
-      headers: this.userTokenHeader
-    })
+    return this._HttpClient.post(`${Enviroment.baseUrl}/api/v1/cart` ,{productId:productId})
   }
 
   getLoggedUserCart():Observable<cartRes>{
-    return this._HttpClient.get<cartRes>(`${Enviroment.baseUrl}/api/v1/cart`,{
-      headers:this.userTokenHeader
-    })
+    return this._HttpClient.get<cartRes>(`${Enviroment.baseUrl}/api/v1/cart`)
   }
 
   updateCartProductQuantity(productID:string , count:string):Observable<cartRes>{
-    return this._HttpClient.put<cartRes>(`${Enviroment.baseUrl}/api/v1/cart/${productID}` , {count:count} ,{
-      headers:this.userTokenHeader
-    })
+    return this._HttpClient.put<cartRes>(`${Enviroment.baseUrl}/api/v1/cart/${productID}` , {count:count} )
   }
 
   removeSpecificItem(productID:string):Observable<cartRes>{
-    return this._HttpClient.delete<cartRes>(`${Enviroment.baseUrl}/api/v1/cart/${productID}`,{
-      headers:this.userTokenHeader
-    })
+    return this._HttpClient.delete<cartRes>(`${Enviroment.baseUrl}/api/v1/cart/${productID}`)
   }
 }

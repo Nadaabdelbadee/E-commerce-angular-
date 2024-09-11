@@ -1,9 +1,4 @@
-@if (isLoading) {
-    <div class="h-screen flex justify-center items-center ">
-        <div class="loader"></div>
-    </div>
-}
-@else {
+
     <section class="container">
         <div class="flex flex-wrap py-5">
          @for (cat of CategoryData; track $index) {
@@ -16,6 +11,5 @@
          }
         </div>
     </section>
-}
 
 

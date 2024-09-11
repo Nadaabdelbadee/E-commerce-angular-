@@ -10,7 +10,6 @@ import { allBrands} from '../../../shared/interfaces/allbrands';
   styleUrl: './brands.component.scss'
 })
 export class BrandsComponent implements OnInit {
-  isLoading:boolean = false
 
   allBrands!:allBrands[]
   constructor(private _BrandService:BrandService){}
@@ -22,16 +21,10 @@ export class BrandsComponent implements OnInit {
   }
 
   getAllBrands(){
-    this.isLoading = true
     this._BrandService.getAllBrands().subscribe({
       next:res=>{
         this.allBrands = res.data
         console.log(res);
-        this.isLoading = false
-      },
-      error:err=>{
-        console.log(err);
-        this.isLoading = false
       }
     })
   }

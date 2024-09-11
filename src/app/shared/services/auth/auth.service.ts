@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { registerData , LoginData ,responceNotSucc , responceSuccess, email, code, newPassword } from '../../interfaces/data';
+import { registerData , LoginData  , responceSuccess, email, code, newPassword } from '../../interfaces/data';
 import { Enviroment } from '../../../base/Enviroment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -9,24 +9,17 @@ import { jwtDecode } from "jwt-decode";
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   userData:any = null;
-  userDataID:any = null
+  userDataID:any = null;
 
-  decodeUserToken(){
-    const token = JSON.stringify(localStorage.getItem('userToken'));
-    const decoded = jwtDecode(token);
-    this.userData = decoded
-    this.userDataToken()
-    this.userDataID = this.userData.id
-    localStorage.setItem('userDataID' , this.userDataID)
-    console.log(this.userData.id);
-    
-  }
+  
   userToken:BehaviorSubject<any> = new BehaviorSubject(null)
+  
   constructor(private _HttpClient:HttpClient , private _Router:Router ,@Inject(PLATFORM_ID) id:object ) { 
     if (isPlatformBrowser(id)) {
       if (localStorage.getItem('userToken')) {
@@ -49,30 +42,35 @@ export class AuthService {
     return this._HttpClient.put(`${Enviroment.baseUrl}/api/v1/auth/resetPassword` , data)
   }
 
-  signUp(data:registerData):Observable<responceSuccess|responceNotSucc>
+  signUp(data:registerData):Observable<responceSuccess>
   {
-    return this._HttpClient.post<responceSuccess|responceNotSucc>(`${Enviroment.baseUrl}/api/v1/auth/signup` , data)
+    return this._HttpClient.post<responceSuccess>(`${Enviroment.baseUrl}/api/v1/auth/signup` , data)
   }
 
-  signIn(data:LoginData):Observable<responceSuccess|responceNotSucc>
-  {
-    return this._HttpClient.post<responceSuccess|responceNotSucc>(`${Enviroment.baseUrl}/api/v1/auth/signin` , data)
-  }
+ signIn( data:LoginData):Observable<any>{
+  return this._HttpClient.post(`${Enviroment.baseUrl}/api/v1/auth/signin` , data)
+ }
 
-  userDataToken()
-  {
-    this.userToken.next(JSON.stringify(localStorage.getItem('userToken')))
+  decodeUserToken(){
+    const token = JSON.stringify(localStorage.getItem('userToken'));
+    const decoded = jwtDecode(token);
+    this.userToken.next(decoded)
+    console.log(this.userToken.getValue());
+    
+    // this.userDataID = this.userData.id
+    // localStorage.setItem('userDataID' , this.userDataID)
+    // console.log(this.userDataID);
+    
   }
 
   logOut(){
     localStorage.removeItem('userToken');
-    this.userToken.next(null);
+    // localStorage.removeItem('userDataID');
+    // this.userToken.next(null);
     this._Router.navigate(['/login']);
   }
   
 }
-// function jwtDecode(token: string) {
-//   throw new Error('Function not implemented.');
-// }
+
 
 

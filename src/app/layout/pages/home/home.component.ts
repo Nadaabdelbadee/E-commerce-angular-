@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
   wishList!: string[]
   productId!: string
   userWord: string = ' ';
-  isLoading: boolean = false
   productList!: product[]
   constructor(private _ProductService: ProductService, private _CartService: CartService ,private toastr: ToastrService, private _WishlistService: WishlistService , private el:ElementRef) { }
   
@@ -43,16 +42,10 @@ export class HomeComponent implements OnInit {
     // // }
   }
   getAllProducts() {
-    this.isLoading = true
     this._ProductService.getAllProducts().subscribe({
       next: res => {
         this.productList = res.data
         console.log(this.productList)
-        this.isLoading = false
-      },
-      error: err => {
-        console.log(err);
-        this.isLoading = false
       }
     })
   }
@@ -64,9 +57,6 @@ export class HomeComponent implements OnInit {
         this.toastr.success(res.message, '', {
           progressBar: true
         });
-      },
-      error: err => {
-        console.log(err);
       }
     })
   }
@@ -80,10 +70,6 @@ addProductToWishlist(productID: string) {
       this.toastr.success(res.message, '', {
         progressBar: true
       });
-    },
-    error: err => {
-      console.log(err);
-
     }
   })
 }

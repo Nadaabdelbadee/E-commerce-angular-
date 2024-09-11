@@ -27,10 +27,6 @@ export class ResetCodeComponent {
           this.isLoading = false;
           this.resetCodeFlag = false
           this.newPasswordFlag = true
-        },
-        error: err => {
-          console.log(err);
-          this.isLoading = false
         }
       })
     }

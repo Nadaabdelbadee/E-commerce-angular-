@@ -17,7 +17,6 @@ import { WishlistService } from '../../../shared/services/wishlist/wishlist.serv
 })
 export class ProductsComponent {
   userWord:string = ' ' ;
-  isLoading:boolean = false
   wishList!: string[]
   productId!: string
   productList!:product[]
@@ -30,16 +29,13 @@ export class ProductsComponent {
   }
 
   getAllProducts(){
-    this.isLoading= true
     this._ProductService.getAllProducts().subscribe({
       next:res=>{
         this.productList = res.data
         console.log(this.productList)
-        this.isLoading = false
       },
       error:err=>{
         console.log(err);
-       this.isLoading = false 
       }
     })
   }
@@ -65,10 +61,6 @@ export class ProductsComponent {
         this.toastr.success(res.message, '', {
           progressBar: true
         });
-      },
-      error: err => {
-        console.log(err);
-  
       }
     })
   }

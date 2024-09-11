@@ -18,7 +18,6 @@ import { WishlistService } from '../../../shared/services/wishlist/wishlist.serv
 export class ProductDetailsComponent implements OnInit {
   wishList!: string[]
   productDetails!:product
-  isLoading:boolean= false
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -39,7 +38,7 @@ export class ProductDetailsComponent implements OnInit {
     this.getProductByID()
   }
   getProductByID() {
-    this.isLoading = true
+
     let id:string = ''
     this._ActivatedRoute.params.subscribe({
       next:p=>{
@@ -51,12 +50,6 @@ export class ProductDetailsComponent implements OnInit {
       next: res => {
         this.productDetails = res.data
         console.log(this.productDetails);
-        this.isLoading = false
-      },
-      error: err => {
-        console.log(err);
-        this.isLoading = false
-
       }
     })
   }
@@ -67,9 +60,6 @@ export class ProductDetailsComponent implements OnInit {
         this.toastr.success(res.message , '' , {
           progressBar:true
         });
-      },
-      error:err=>{
-        console.log(err);
       }
     })
   }
@@ -81,10 +71,6 @@ export class ProductDetailsComponent implements OnInit {
         this.toastr.success(res.message, '', {
           progressBar: true
         });
-      },
-      error: err => {
-        console.log(err);
-  
       }
     })
   }

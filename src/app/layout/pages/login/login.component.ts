@@ -27,13 +27,13 @@ export class LoginComponent {
       this._AuthService.signIn(this.loginForm.value).subscribe({
         next: (res) => {
           this.isloading = false;
-          console.log(res);
-          // this._AuthService.userDataToken()
-          if (res.token !== null) {
+          console.log(res.token);
+          if (res.token) {
             localStorage.setItem('userToken', res.token)
           } 
           this._AuthService.decodeUserToken();
           this._Router.navigate(['/home'])
+          // this._AuthService.userDataToken()  
         },
         error: (err) => {
           this.isloading = false

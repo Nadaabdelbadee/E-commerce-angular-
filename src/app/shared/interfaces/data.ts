@@ -14,7 +14,7 @@ export interface registerData extends LoginData {
     phone:string,
 }
 export interface LoginData extends email {
-    password:string,
+    password:string
 }
 
 export interface responceSuccess{
@@ -27,11 +27,11 @@ export interface responceSuccess{
     token:string,
 }
 
-export interface responceNotSucc{
-    statusMsg:string,
-    message:string,
-    token:string,
-}
+// export interface responceNotSucc{
+//     statusMsg:string,
+//     message:string,
+//     token:string,
+// }
 
 export interface Address{
     details:string,

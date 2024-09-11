@@ -27,7 +27,7 @@ export class NewPasswordComponent {
           console.log(res);
           this.isLoading = false
           localStorage.setItem('userToken', res.token)
-          this._AuthService.userDataToken();
+          this._AuthService.decodeUserToken();
           this._Router.navigate(['/home'])
 
         },error:err=>{

@@ -11,7 +11,6 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   styleUrl: './category-slider.component.scss'
 })
 export class CategorySliderComponent implements OnInit {
-  isLoading:boolean = false
     categoryList!:Category[]
     constructor(private _CategoryService:CategoryService){}
     customOptions: OwlOptions = {
@@ -34,16 +33,10 @@ export class CategorySliderComponent implements OnInit {
       this.getAllCategories()
     }
     getAllCategories(){
-      this.isLoading = true
       this._CategoryService.getAllCategories().subscribe({
         next:res=>{
           this.categoryList = res.data
           console.log(this.categoryList);
-          this.isLoading = false
-        },
-        error:err=>{
-          console.log(err);
-          this.isLoading = false
         }
       })
     }

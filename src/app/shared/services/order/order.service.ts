@@ -17,20 +17,13 @@ export class OrderService {
   chechOut(cartID:string, data: Address):Observable<orders> {
     return this._HttpClient.post<orders>(`${Enviroment.baseUrl}/api/v1/orders/checkout-session/${cartID}?url=${Enviroment.websiteUrl}`, {
       shippingAddress: data
-    },
-      {
-        headers: this.userTokenHeader
-      })
+    })
   }
   cashOrder(cartID:string , data :Address):Observable<cashOrderRes>{
     return this._HttpClient.post<cashOrderRes>(`${Enviroment.baseUrl}/api/v1/orders/${cartID}`,
       {
         shippingAddress: data
-      },
-      {
-        headers: this.userTokenHeader
-      }
-    )
+      })
   }
 
   getUserOrders():Observable<userOrders>{

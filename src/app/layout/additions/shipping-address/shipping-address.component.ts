@@ -28,10 +28,6 @@ export class ShippingAddressComponent {
               console.log(res);
               window.open(res.session.url , '_self')
               
-            },
-            error:err=>{
-              console.log(err);
-              
             }
           })
         }
@@ -47,9 +43,6 @@ export class ShippingAddressComponent {
           this._OrderService.cashOrder(p.get('cartID')! , this.ShippingAddressForm.value).subscribe({
             next:res=>{
               console.log(res);
-            },
-            error:err=>{
-              console.log(err);
             }
           })
         }

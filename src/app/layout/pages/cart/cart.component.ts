@@ -13,7 +13,6 @@ import { RouterLink } from '@angular/router';
 export class CartComponent {
   cartProduct!:Data
   numberOfCartItems!:number
-  isLoading:boolean = false
   constructor(private _CartService:CartService){}
   ngOnInit(): void {
     if (typeof localStorage !='undefined') {
@@ -24,17 +23,12 @@ export class CartComponent {
   }
 
   getLoggedUserCart(){
-    this.isLoading = true
     this._CartService.getLoggedUserCart().subscribe({
       next:res=>{
         this.cartProduct = res.data
         this.numberOfCartItems = res.numOfCartItems
         console.log(res);
-        this.isLoading = false
-      },
-      error:err=>{
-        console.log(err);
-        this.isLoading = false
+
       }
     })
   }
@@ -44,9 +38,6 @@ export class CartComponent {
       next:res=>{
         console.log(res);
         this.cartProduct = res.data
-      },
-      error:err=>{
-        console.log(err);  
       }
     })
   }
@@ -57,9 +48,6 @@ export class CartComponent {
       next:res=>{
         console.log(res);
         this.cartProduct = res.data
-      },
-      error:err=>{
-        console.log(err);
       }
     })
   }

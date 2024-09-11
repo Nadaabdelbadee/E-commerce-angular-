@@ -14,23 +14,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './wishlist.component.scss'
 })
 export class WishlistComponent implements OnInit {
-  isLoading:boolean = false
+
   wishlist!:list[]
 constructor(private _WishlistService:WishlistService ,private _CartService:CartService , private toastr: ToastrService){}
 ngOnInit(): void {
   this.getLoggedUserWishlist()
 }
 getLoggedUserWishlist(){
-  this.isLoading = true
   this._WishlistService.getLoggedUserWishlist().subscribe({
     next:res=>{
       this.wishlist = res.data
       console.log(this.wishlist);
-      this.isLoading= false
-    },
-    error:err=>{
-      console.log(err);
-      this.isLoading = false
     }
   })
 }
@@ -42,9 +36,6 @@ addProductToCart(productId:string) {
       this.toastr.success(res.message, '', {
         progressBar: true
       });
-    },
-    error: err => {
-      console.log(err);
     }
   })
 }
@@ -54,9 +45,6 @@ removeProFromWishlist(productID:string){
     next:res=>{
       console.log(res);
       this.getLoggedUserWishlist()
-    },
-    error:err=>{
-      console.log(err);
     }
   })
 }
